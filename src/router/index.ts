@@ -1,3 +1,4 @@
+import { start, stop } from '@/utils/nprogress'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -21,3 +22,11 @@ const router = createRouter({
 })
 
 export default router
+
+router.beforeEach(() => {
+  start()
+})
+
+router.afterEach(() => {
+  stop()
+})

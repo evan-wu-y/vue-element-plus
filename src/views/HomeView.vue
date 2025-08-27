@@ -38,16 +38,18 @@ const toggleTheme2 = () => {
         <h1 class="text-primary">element plus</h1>
         <el-button @click="open">hello element plus</el-button>
       </div>
-      <div class="flex-wrap flex gap-4 mt-4">
+      <div class="mt-4 flex flex-wrap gap-4">
         <el-button>Button</el-button>
         <el-button type="primary">Primary</el-button>
         <el-button type="success">Success</el-button>
         <el-button type="warning">Warning</el-button>
         <el-button type="danger">Danger</el-button>
         <el-button type="info">Info</el-button>
+        <el-button :bg="true" type="text">Bg</el-button>
+        <el-button :bg="false" type="text">Bg</el-button>
         <el-button type="text">Text</el-button>
       </div>
-      <div class="flex justify-center mt-4">
+      <div class="mt-4 flex justify-center">
         <el-button
           v-loading.fullscreen="isLoading"
           element-loading-text="Loading..."
