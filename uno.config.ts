@@ -3,8 +3,8 @@ import {
   presetAttributify,
   presetIcons,
   presetTypography,
-  presetWind4,
   presetWebFonts,
+  presetWind4,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
@@ -18,7 +18,12 @@ export default defineConfig({
     }),
     presetAttributify(),
     presetIcons({
-      scale: 1.2,
+      // scale: 1.2,
+      extraProperties: {
+        display: 'inline-block',
+        height: '1.2em',
+        width: '1.2em',
+      },
     }),
     presetTypography(),
     presetWebFonts({
@@ -44,6 +49,7 @@ export default defineConfig({
         base: 'var(--ep-bg-color)',
         page: 'var(--ep-bg-color-page)',
       },
+      border: 'var(--ep-border-color)',
     },
     spacing: {
       xs: '4px',

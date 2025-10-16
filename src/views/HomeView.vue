@@ -1,5 +1,6 @@
-<script setup lang="ts">
-import { ElLoading, ElMessage, ElNotification } from 'element-plus'
+<script setup lang="tsx">
+import { theme, toggleTheme } from '@/composables/dark'
+import { h } from 'vue'
 
 const open = () => {
   ElMessage('This is a message.')
@@ -7,27 +8,6 @@ const open = () => {
     title: 'Notification',
     message: 'This is a notification.',
   })
-}
-
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
-const theme = computed(() => (isDark.value ? 'dark' : 'light'))
-
-const isLoading = ref(false)
-const toggleTheme = () => {
-  isLoading.value = true
-  setTimeout(() => {
-    toggleDark()
-    isLoading.value = false
-  }, 1000)
-}
-
-const toggleTheme2 = () => {
-  const loading = ElLoading.service()
-  setTimeout(() => {
-    toggleDark()
-    loading.close()
-  }, 1000)
 }
 </script>
 
@@ -38,7 +18,7 @@ const toggleTheme2 = () => {
         <h1 class="text-primary">element plus</h1>
         <el-button @click="open">hello element plus</el-button>
       </div>
-      <div class="mt-4 flex flex-wrap gap-4">
+      <div class="mt-4 flex flex-wrap gap-4 hover:cursor-pointer">
         <el-button>Button</el-button>
         <el-button type="primary">Primary</el-button>
         <el-button type="success">Success</el-button>
@@ -49,15 +29,15 @@ const toggleTheme2 = () => {
         <el-button :bg="false" type="text">Bg</el-button>
         <el-button type="text">Text</el-button>
       </div>
-      <div class="mt-4 flex justify-center">
-        <el-button
-          v-loading.fullscreen="isLoading"
-          element-loading-text="Loading..."
-          @click="toggleTheme"
-        >
+      <div mt-4 flex gap-4 items-center justify-center>
+        <el-button @click="toggleTheme">
           {{ theme }}
         </el-button>
-        <el-button @click="toggleTheme2"> {{ theme }} 2 </el-button>
+        <el-button
+          :icon="
+            h('div', { class: 'i-carbon-sun dark:i-carbon-moon text-lg hover:cursor-pointer' })
+          "
+        />
       </div>
     </div>
   </main>

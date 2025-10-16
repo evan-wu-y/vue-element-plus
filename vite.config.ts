@@ -1,14 +1,14 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
 
 import UnoCSS from 'unocss/vite'
 
@@ -19,12 +19,12 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
 
-    UnoCSS(),
+    UnoCSS('uno.config.ts'),
 
     // 自动导入 API，比如 ElMessage, ElMessageBox
     AutoImport({
       imports: ['vue', '@vueuse/core'],
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
       dts: 'src/types/auto-imports.d.ts', // 生成全局类型声明
     }),
 
